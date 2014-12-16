@@ -48,8 +48,9 @@ return array(
 		),
 		*/
 		'db'=>array(
-			'connectionString' => 'sqlite:'.dirname(__FILE__).'/../data/testdrive.db',
-		),
+      'connectionString'=>'sqlite:/var/www/yiiblog.loc/blog/protected/data/blog.db',
+      'tablePrefix'=>'tbl_',
+    ),
 		// uncomment the following to use a MySQL database
 		/*
 		'db'=>array(
@@ -87,4 +88,17 @@ return array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
 	),
+
+  // installing Gii
+  'import'=>array(
+    'application.models.*',
+    'application.components.*',
+  ),
+
+  'modules'=>array(
+      'gii'=>array(
+          'class'=>'system.gii.GiiModule',
+          'password'=>'123456',
+      ),
+  ),
 );
