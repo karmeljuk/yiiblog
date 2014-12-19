@@ -1,0 +1,5 @@
+{
+    "require": {
+        "pendalf89/yii-commentator": "dev-master"
+    }
+}

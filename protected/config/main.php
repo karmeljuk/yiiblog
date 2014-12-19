@@ -7,7 +7,7 @@
 // CWebApplication properties can be configured here.
 return array(
 	'basePath'=>dirname(__FILE__).DIRECTORY_SEPARATOR.'..',
-	'name'=>'My Web Application',
+	'name'=>'My Test Yii Blog',
 
 	// preloading 'log' component
 	'preload'=>array('log'),
@@ -18,17 +18,18 @@ return array(
 		'application.components.*',
 	),
 
-	'modules'=>array(
-		// uncomment the following to enable the Gii tool
-		/*
-		'gii'=>array(
-			'class'=>'system.gii.GiiModule',
-			'password'=>'Enter Your Password Here',
-			// If removed, Gii defaults to localhost only. Edit carefully to taste.
-			'ipFilters'=>array('127.0.0.1','::1'),
-		),
-		*/
-	),
+  'defaultController'=>'post',
+
+'aliases' => array(
+    'comments' => realpath(dirname(__FILE__) . '/../..') . '/vendor/pendalf89/yii-commentator/',
+),
+'modules'=>array(
+    'comments' => array(
+        'class' => 'pendalf89\yii_commentator\CommentsModule',
+        'userModelClass' => '',
+        'isSuperuser' => '!Yii::app()->user->isGuest',
+    ),
+),
 
 	// application components
 	'components'=>array(
@@ -48,7 +49,7 @@ return array(
 		),
 		*/
 		'db'=>array(
-      'connectionString'=>'sqlite:/var/www/yiiblog.loc/blog/protected/data/blog.db',
+      'connectionString'=>'sqlite:'.dirname(__FILE__).'/../data/blog.db',
       'tablePrefix'=>'tbl_',
     ),
 		// uncomment the following to use a MySQL database
@@ -65,6 +66,14 @@ return array(
 			// use 'site/error' action to display errors
 			'errorAction'=>'site/error',
 		),
+    'urlManager'=>array(
+      'urlFormat'=>'path',
+      'rules'=>array(
+        'post/<id:\d+>/<title:.*?>'=>'post/view',
+        'posts/<tag:.*?>'=>'post/index',
+        '<controller:\w+>/<action:\w+>'=>'<controller>/<action>',
+      ),
+    ),
 		'log'=>array(
 			'class'=>'CLogRouter',
 			'routes'=>array(
@@ -87,6 +96,8 @@ return array(
 	'params'=>array(
 		// this is used in contact page
 		'adminEmail'=>'webmaster@example.com',
+    'postsPerPage'=>10,
+    'copyrightInfo'=>'Copyright &copy; 2014 | My Super Yii Blog.',
 	),
 
   // installing Gii
