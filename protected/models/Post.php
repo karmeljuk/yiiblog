@@ -178,4 +178,17 @@ class Post extends CActiveRecord
     Comment::model()->deleteAll('post_id='.$this->id);
     Tag::model()->updateFrequency($this->tags, '');
   }
+
+  // Add commentable behavior to all Models you want to be commented.
+  public function behaviors() {
+    return array(
+    'commentable' => array(
+        'class' => 'ext.comment-module.behaviors.CommentableBehavior',
+        // name of the table created in last step
+        'mapTable' => 'posts_comments_nm',
+        // name of column to related model id in mapTable
+        'mapRelatedColumn' => 'postId'
+      ),
+   );
+  }
 }

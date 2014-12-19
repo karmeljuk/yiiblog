@@ -11,19 +11,19 @@ return array(
 
 	// application components
     'components'=>array(
-	// 	'db'=>array(
- //      'connectionString'=>'sqlite:'.dirname(__FILE__).'/../data/blog.db',
- //      'tablePrefix'=>'tbl_',
- //    ),
+		'db'=>array(
+      'connectionString'=>'sqlite:'.dirname(__FILE__).'/../data/blog.db',
+      'tablePrefix'=>'tbl_',
+    ),
 		// uncomment the following to use a MySQL database
 
-		'db'=>array(
-			'connectionString' => 'mysql:host=localhost;dbname=yiiblog',
-			'emulatePrepare' => true,
-			'username' => 'yiiblog',
-			'password' => 'yiiblog',
-			'charset' => 'utf8',
-		),
+		// 'db'=>array(
+		// 	'connectionString' => 'mysql:host=localhost;dbname=yiiblog',
+		// 	'emulatePrepare' => true,
+		// 	'username' => 'yiiblog',
+		// 	'password' => 'yiiblog',
+		// 	'charset' => 'utf8',
+		// ),
 
 		'log'=>array(
 			'class'=>'CLogRouter',

@@ -21,14 +21,18 @@ return array(
   'defaultController'=>'post',
 
 'aliases' => array(
-    'comments' => realpath(dirname(__FILE__) . '/../..') . '/vendor/pendalf89/yii-commentator/',
 ),
 'modules'=>array(
-    'comments' => array(
-        'class' => 'pendalf89\yii_commentator\CommentsModule',
-        'userModelClass' => '',
-        'isSuperuser' => '!Yii::app()->user->isGuest',
-    ),
+
+    'comment'=>array(
+      'class'=>'ext.comment-module.CommentModule',
+      'commentableModels'=>array(
+          'post'=>'Post'
+      ),
+      'userModelClass'=>'User',
+      'userNameAttribute'=>'username',
+      'userEmailAttribute'=>'email',
+  ),
 ),
 
 	// application components

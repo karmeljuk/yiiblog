@@ -10,7 +10,11 @@ $this->pageTitle=$model->title;
 )); ?>
 
 <div id="comments">
-<?php //$this->widget('pendalf89\yii_commentator\extensions\comments_widget\CommentsWidget'); ?>
+<h3>comments</h3>
+
+<?php $this->renderPartial('comment.views.comment.commentList', array(
+    'model'=>$model
+)); ?>
 
 </div><!-- comments -->
 
